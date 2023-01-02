@@ -1,0 +1,61 @@
+<div>
+    <div class="submit-form">
+        <div *ngIf="!submitted">
+            <div class="form-group f">
+                <label class="l" for="id">STT</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="id"
+                    required
+                    [(ngModel)]="value.id"
+                    name="value1"
+                />
+            </div>
+            <div class="form-group f">
+                <label class="l" for="value1">Value1</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="value1"
+                    required
+                    [(ngModel)]="value.value1"
+                    name="value1"
+                />
+            </div>
+
+            <div class="form-group f">
+                <label class="l" for="value2">Value2</label>
+                <input
+                    class="form-control"
+                    id="value2"
+                    type="text"
+                    required
+                    [(ngModel)]="value.value2"
+                    name="value2"
+                />
+            </div>
+
+            <div class="form-group f">
+                <label class="l" for="value3">Value3</label>
+                <input
+                    class="form-control"
+                    id="value3"
+                    type="number"
+                    required
+                    [(ngModel)]="value.value3"
+                    name="value3"
+                />
+            </div>
+            <button (click)="saveTutorial()" class="btn btn-success b">
+                THÊM
+            </button>
+        </div>
+        <div *ngIf="submitted">
+            <h4>Thêm dữ liệu thành công!</h4>
+            <button class="btn btn-success" (click)="newTutorial()">
+                THÊM DỮ LIỆU MỚI
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,124 @@
+<div *ngIf="viewMode; else editable">
+    <div *ngIf="currentValue.id">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Mã</th>
+                    <th scope="col">Value1</th>
+                    <th scope="col">Value2</th>
+                    <th scope="col">Value3</th>
+            
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr>
+                    <!-- Sửa cái này theo table -->
+                    <td>{{ currentValue.id }}</td>
+                    <td>{{ currentValue.value1 }}</td>
+                    <td>{{ currentValue.value2 }}</td>
+                    <td>{{ currentValue.value3 }}</td>
+
+                    <!-- <td>@{{ currentValue.published ? "Published" : "Pending" }}</td> -->
+                </tr>
+            </tbody>
+        </table>
+
+        <button type="button" class="btn btn-warning">
+            <a
+                class="badge badge-warning"
+                routerLink="/values/{{ currentValue.id }}"
+            >
+                Edit
+            </a>
+        </button>
+    </div>
+
+    <div *ngIf="!currentValue">
+        <br />
+        <p>Please click on a Value...</p>
+    </div>
+</div>
+
+<ng-template #editable>
+    <div *ngIf="currentValue.id" class="edit-form">
+        <h4>Value</h4>
+        <form>
+            <!-- Tên -->
+            <div class="form-group">
+                <label for="id">Mã GV</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="id"
+                    [(ngModel)]="currentValue.id"
+                    name="id"
+                />
+            </div>
+            <div class="form-group">
+                <label for="value1">Họ tên</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="value1"
+                    [(ngModel)]="currentValue.value1"
+                    name="value1"
+                />
+            </div>
+            <!-- Giá -->
+            <div class="form-group">
+                <label for="value2">Tên bộ môn</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="value2"
+                    [(ngModel)]="currentValue.value2"
+                    name="value2"
+                />
+            </div>
+            <!-- Số lượng -->
+            <div class="form-group">
+                <label for="value3">Hệ số lương</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="value3"
+                    [(ngModel)]="currentValue.value3"
+                    name="value3"
+                />
+            </div>
+
+            <!-- <div class="form-group">
+                <label><strong>Status:</strong></label>
+                {{ currentValue.published ? 'Published' : 'Pending' }}
+            </div> -->
+        </form>
+
+        <!-- Nút cập nhật trạng thái -->
+        <!-- <button
+            class="btn btn-primary"
+            *ngIf="currentValue.published"
+            (click)="updatePublished(false)"
+        >
+            UnPublish
+        </button>
+        <button
+            *ngIf="!currentValue.published"
+            class="btn btn-primary"
+            (click)="updatePublished(true)"
+        >
+            Publish
+        </button> -->
+
+        <button class="btn btn-danger" (click)="deleteValue()">Delete</button>
+
+        <button type="submit" class="btn btn-success" (click)="updateValue()">
+            Update
+        </button>
+        <p>{{ message }}</p>
+    </div>
+
+    <div *ngIf="!currentValue.id">
+        <br />
+        <p>Cannot access this Value...</p>
+    </div>
+</ng-template>
